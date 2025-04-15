@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+  <title>About & Contact | Expense Tracker</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #ffe6e6;
+      color: #333;
+    }
+
+    h1, h2 {
+      color: #cc0000;
+    }
+
+    section {
+      padding: 40px 20px;
+      text-align: center;
+    }
+
+    .about-container {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      background-color: #fff0f0;
+      border-radius: 15px;
+      padding: 30px;
+      max-width: 1100px;
+      margin: 0 auto 40px auto;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+      animation: fadeIn 1s ease;
+    }
+
+    .about-image {
+      flex: 1 1 300px;
+      max-width: 400px;
+      margin: 10px;
+    }
+
+    .about-image img {
+      width: 100%;
+      border-radius: 15px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+
+    .about-content {
+      flex: 1 1 300px;
+      margin: 10px;
+      animation: slideInRight 1s ease;
+    }
+
+    .about-content p {
+      font-size: 17px;
+      line-height: 1.7;
+      color: #444;
+      margin-bottom: 20px;
+      text-align: justify;
+    }
+
+    @keyframes fadeIn {
+      from {opacity: 0;}
+      to {opacity: 1;}
+    }
+
+    @keyframes slideInRight {
+      from {
+        opacity: 0;
+        transform: translateX(40px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    .mission-vision {
+      margin-top: 30px;
+      padding: 50px 30px;
+      background-color: #fceaea;
+      border-radius: 25px;
+      max-width: 1000px;
+      margin-left: auto;
+      margin-right: auto;
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+      animation: fadeIn 1.2s ease-in-out;
+    }
+
+    .mission-vision h2 {
+      margin-top: 20px;
+    }
+
+    .mission-vision p {
+      margin-top: 10px;
+      font-size: 16px;
+      color: #444;
+    }
+
+    .container {
+      background: #fff;
+      padding: 40px;
+      border-radius: 15px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      width: 90%;
+      max-width: 900px;
+      margin: 50px auto;
+      text-align: center;
+    }
+
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+      width: 90%;
+      max-width: 600px;
+      padding: 12px 15px;
+      margin: 12px 0;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+      font-size: 15px;
+      transition: border 0.3s ease;
+    }
+
+    .contact-form input:focus,
+    .contact-form textarea:focus {
+      outline: none;
+      border: 2px solid #ff6666;
+    }
+
+    .contact-form button {
+      background-color: #ff6666;
+      color: white;
+      padding: 12px 25px;
+      border: none;
+      font-size: 16px;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.2s;
+    }
+
+    .contact-form button:hover {
+      background-color: #ff4d4d;
+      transform: scale(1.05);
+    }
+
+    .social-links {
+      margin-top: 30px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      align-items: center;
+      font-size: 16px;
+    }
+
+    .social-links a {
+      text-decoration: none;
+      color: #444;
+      transition: color 0.3s;
+    }
+
+    .social-links a:hover {
+      color: #cc0000;
+    }
+
+    .animated-btn {
+      margin-top: 30px;
+      padding: 12px 25px;
+      font-size: 16px;
+      background-color: #3710e5;
+      color: white;
+      border: none;
+      cursor: pointer;
+      border-radius: 8px;
+      transition: background-color 0.3s ease, transform 0.2s ease-in-out;
+    }
+
+    .animated-btn:hover {
+      background-color: #444;
+      transform: scale(1.05);
+    }
+
+    footer {
+        background-color: #7f27c2;
+        color: rgb(0, 0, 0);
+        text-align: center;
+        padding: 20px;
+        position: relative;
+        bottom: 0;
+        width: 100%;
+    }
+    .footer-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+    .contact a, .follow-us a {
+        color: rgb(250, 5, 38);
+        text-decoration: none;
+        margin: 5px;
+    }
+    .contact a:hover, .follow-us a:hover {
+        color: #ff6666;
+    }
+
+    @media (max-width: 768px) {
+      .about-container {
+        flex-direction: column;
+        padding: 20px;
+      }
+
+      .mission-vision {
+        padding: 30px 20px;
+        border-radius: 20px;
+      }
+
+      .container {
+        padding: 25px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <section>
+    <div class="about-container">
+      <div class="about-image">
+        <img src="New folder/mygroup.jpg" alt="Team working">
+      </div>
+      <div class="about-content">
+        <h2>About Us</h2>
+        <p>
+          We’re a team of dedicated developers on a mission to make personal finance simple, intuitive, and empowering for everyone. Managing money shouldn’t be overwhelming—it should be insightful, engaging, and even enjoyable.
+        </p>
+        <p>
+          Our platform gives users the tools to take control of their financial journey. From tracking income and expenses to visualizing spending patterns and setting future goals, we provide a seamless experience designed to make budgeting effortless.
+        </p>
+        <p>
+          Financial well-being is key to a secure and stress-free life. By offering smart, user-friendly solutions, we help individuals make informed financial decisions with confidence—turning budgeting into a habit, not a hassle.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <div class="mission-vision">
+    <h2>Our Mission</h2>
+    <p>
+      To provide people everywhere with seamless financial management tools that help them track income, monitor expenses, and make smarter financial decisions—all effortlessly.
+    </p>
+    <h2>Our Vision</h2>
+    <p>
+      To become the most trusted and engaging expense management platform that transforms budgeting from a burden into a simple and insightful experience, accessible to all.
+    </p>
+  </div>
+
+  <div class="container">
+    <h1>Contact Us</h1>
+    <p>We’d love to hear from you! Connect with us:</p>
+
+    <form class="contact-form">
+      <input type="text" id="name" placeholder="Your Name" required>
+      <input type="email" id="email" placeholder="Your Email" required>
+      <textarea id="message" placeholder="Write your message here..." rows="4" required></textarea>
+      <button type="button" onclick="submitMessage()">Send Message</button>
+    </form>
+
+    <div class="social-links">
+      <a href="mailto:example@mail.com">📧 Email: example@mail.com</a>
+      <a href="https://www.facebook.com/ExpenseTracker" target="_blank">📘 Facebook: @ExpenseTracker</a>
+      <a href="https://twitter.com/ExpenseTracker" target="_blank">🐦 Twitter: @ExpenseTracker</a>
+      <a href="https://www.instagram.com/ExpenseTracker" target="_blank">📷 Instagram: @ExpenseTracker</a>
+      <a href="https://www.linkedin.com/company/ExpenseTracker" target="_blank">💼 LinkedIn: Expense Tracker</a>
+    </div>
+
+    <button class="animated-btn" onclick="goBack()">Go Back</button>
+  </div>
+
+    <footer>
+      <div class="footer-container">
+            <div class="location">
+              📍 **Location:** <a href="https://mapcarta.com/34489982" target="_blank">CST College, Bhutan</a>
+          </div>
+          <div class="contact">
+              📧 **Email:** <a href="mailto:example@mail.com">example@mail.com</a>
+              📞 **Phone:** +91 1234567890
+          </div>
+          <div class="follow-us">
+              <p>Follow Us:</p>
+              <a href="https://www.facebook.com/ExpenseTracker" target="_blank">📘 Facebook</a>
+              <a href="https://twitter.com/ExpenseTracker" target="_blank">🐦 Twitter</a>
+              <a href="https://www.instagram.com/ExpenseTracker" target="_blank">📷 Instagram</a>
+              <a href="https://www.linkedin.com/company/ExpenseTracker" target="_blank">💼 LinkedIn</a>
+          </div>
+          <p>© 2025 Expense Tracker | All Rights Reserved</p>
+      </div>
+  </footer>
+
+  <script>
+    function goBack() {
+      window.history.back();
+    }
+
+    function submitMessage() {
+      const name = document.getElementById("name").value;
+      const email = document.getElementById("email").value;
+      const message = document.getElementById("message").value;
+
+      if (name && email && message) {
+        alert("Thank you, " + name + "! Your message has been received.");
+        document.getElementById("name").value = "";
+        document.getElementById("email").value = "";
+        document.getElementById("message").value = "";
+      } else {
+        alert("Please fill in all fields.");
+      }
+    }
+  </script>
+</body>
+</html>

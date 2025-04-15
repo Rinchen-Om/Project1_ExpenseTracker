@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+  <title>Help - Expense Tracker</title>
+  <meta name="description" content="Help and support for Expense Tracker. Includes FAQs, tutorials, and a contact form for feedback or issues." />
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #ffe6e6;
+    }
+
+    section {
+      padding: 40px 20px;
+      text-align: center;
+    }
+
+    .container {
+      background-color: #fff0f0;
+      padding: 30px;
+      border-radius: 12px;
+      max-width: 900px;
+      margin: 30px auto;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+      color: #cc3366;
+      font-size: 28px;
+      margin-bottom: 20px;
+    }
+
+    h3 {
+      color: #444;
+    }
+
+    .faq {
+      text-align: left;
+      margin-bottom: 30px;
+      line-height: 1.6;
+    }
+
+    .faq p {
+      margin: 12px 0;
+      color: #444;
+    }
+
+    .tutorials ul {
+      text-align: left;
+      padding-left: 20px;
+      color: #444;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    label {
+      font-weight: bold;
+      text-align: left;
+    }
+
+    input, textarea {
+      padding: 12px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+      background-color: #fff;
+    }
+
+    input:focus, textarea:focus {
+      outline: none;
+      border-color: #cc3366;
+      box-shadow: 0 0 5px rgba(204, 51, 102, 0.5);
+    }
+
+    button {
+      padding: 12px 20px;
+      background-color: #cc3366;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #b52d59;
+    }
+
+    .back-btn {
+      margin-top: 30px;
+    }
+
+    .back-btn button {
+      background-color: #3710e5;
+    }
+
+    .back-btn button:hover {
+      background-color: #444;
+    }
+
+    footer {
+      background-color: #7f27c2;
+      color: black;
+      text-align: center;
+      padding: 20px;
+      width: 100%;
+    }
+
+    .footer-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .contact a, .follow-us a {
+      color: #fa0526;
+      text-decoration: none;
+      margin: 5px;
+    }
+
+    .contact a:hover, .follow-us a:hover {
+      color: #ff6666;
+    }
+
+    @media screen and (max-width: 768px) {
+      .page-title {
+        font-size: 18px;
+      }
+      header, footer {
+        flex-direction: column;
+        height: auto;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <section class="container">
+    <h2>Frequently Asked Questions</h2>
+    <div class="faq">
+      <p><strong>What is Expense Tracker?</strong><br>
+        A: An expense tracker is a tool that helps users record and monitor their spending habits, ensuring better financial management.
+      </p>
+      <p><strong>Why should I use an expense tracker?</strong><br>
+        A: It helps you stay within budget, identify unnecessary expenses, and plan for future financial goals.
+      </p>
+      <p><strong>How do I add an expense?</strong><br>
+        A: Navigate to the Expense page, enter details like category, amount, and date, then submit.
+      </p>
+      <p><strong>Can I track my income and balance?</strong><br>
+        A: Yes! Most expense trackers allow users to monitor income, expenses, and overall balance.
+      </p>
+    </div>
+
+    <h2>Tutorials & Guides</h2>
+    <div class="tutorials">
+      <ul>
+        <li><strong>Track Expenses:</strong> Navigate to Expense page → Add category, amount, and date → Submit</li>
+        <li><strong>Check Balance:</strong> View Balance page for your current totals and graphs.</li>
+        <li><strong>Submit Feedback:</strong> Use the Feedback box on Home page to give ratings and messages.</li>
+      </ul>
+    </div>
+
+    <h2>Technical Support / Feedback</h2>
+    <form onsubmit="submitForm(event)">
+      <label for="name">Your Name</label>
+      <input id="name" type="text" placeholder="Enter your name" required />
+
+      <label for="email">Your Email</label>
+      <input id="email" type="email" placeholder="Enter your email" required />
+
+      <label for="message">Message</label>
+      <textarea id="message" rows="4" placeholder="Describe your issue or feedback..." required></textarea>
+
+      <button type="submit">Submit</button>
+    </form>
+
+    <div class="back-btn">
+      <a href="home.html">
+        <button>← Go Back to Home</button>
+      </a>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-container">
+      <div class="location">
+        📍 <strong>Location:</strong> <a href="https://mapcarta.com/34489982" target="_blank">CST College, Bhutan</a>
+      </div>
+      <div class="contact">
+        📧 <strong>Email:</strong> <a href="mailto:example@mail.com">example@mail.com</a><br>
+        📞 <strong>Phone:</strong> +91 1234567890
+      </div>
+      <div class="follow-us">
+        <p>Follow Us:</p>
+        <a href="https://www.facebook.com/ExpenseTracker" target="_blank">📘 Facebook</a>
+        <a href="https://twitter.com/ExpenseTracker" target="_blank">🐦 Twitter</a>
+        <a href="https://www.instagram.com/ExpenseTracker" target="_blank">📷 Instagram</a>
+        <a href="https://www.linkedin.com/company/ExpenseTracker" target="_blank">💼 LinkedIn</a>
+      </div>
+      <p>© 2025 Expense Tracker | All Rights Reserved</p>
+    </div>
+  </footer>
+
+  <script>
+    // Simulate contact form submission
+    function submitForm(event) {
+      event.preventDefault();
+      alert("Thanks for contacting us! We'll get back to you soon.");
+      document.querySelector('form').reset();
+    }
+  </script>
+
+</body>
+</html>

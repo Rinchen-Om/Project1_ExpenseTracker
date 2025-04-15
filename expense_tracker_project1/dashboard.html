@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+  <title>Dashboard | Expense Tracker</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #ffe6e6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      background-color: #2f5bba;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 50px;
+      height: 80px;
+    }
+
+    header img {
+      border-radius: 50%;
+      max-width: 60px;
+    }
+
+     nav a {
+      margin-left: 20px;
+      text-decoration: none;
+      color: white;
+      font-weight: bold;
+      font-size: 16px;
+    }
+
+    nav a:hover {
+      color: #ffcc00;
+    }
+
+    .dashboard-container {
+      max-width: 1000px;
+      margin: 40px auto;
+      padding: 20px;
+      background-color: #fff0f0;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      flex: 1;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 30px;
+      font-size: 24px;
+      font-weight: bold;
+      color: #333;
+    }
+
+    .summary {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 30px;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .summary-box {
+      background-color: #fff;
+      flex: 1;
+      min-width: 200px;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+
+    .summary-box h4 {
+      margin-bottom: 10px;
+      color: #666;
+    }
+
+    .summary-box p {
+      font-size: 22px;
+      font-weight: bold;
+      color: #333;
+    }
+
+    .chart-container {
+      margin: 0 auto;
+      max-width: 100%;
+      height: 400px;
+      position: relative;
+    }
+
+    .btn-group {
+      margin-top: 30px;
+      text-align: center;
+    }
+
+    .btn-group a {
+      display: inline-block;
+      margin: 10px;
+      padding: 12px 25px;
+      background-color: #ff8080;
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: bold;
+      transition: background-color 0.3s ease;
+    }
+
+    .btn-group a:hover {
+      background-color: #ff4d4d;
+    }
+
+    footer {
+        background-color: #7f27c2;
+        color: white;
+        text-align: center;
+        padding: 20px;
+        width: 100%;
+    }
+    .footer-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+    .contact a, .follow-us a {
+        color: #ffcc00;
+        text-decoration: none;
+        margin: 5px;
+    }
+    .contact a:hover, .follow-us a:hover {
+        color: #ff6666;
+    }
+    
+    @media (max-width: 768px) {
+      header {
+        padding: 10px 20px;
+        flex-direction: column;
+        height: auto;
+      }
+      
+      nav {
+        margin-top: 10px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      
+      nav a {
+        margin: 5px 10px;
+      }
+      
+      .summary-box {
+        min-width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <img src="New folder/logo.png" alt="Logo">
+       <nav>
+      <a href="home.html">Home</a>
+      <a href="dashboard.html">Dashboard</a>
+      <a href="income.html">Income</a>
+      <a href="expense.html">Expense</a>
+      <a href="balance.html">Balance</a>
+    </nav>
+  </header>
+
+  <div class="dashboard-container">
+    <div class="section-title">Financial Overview</div>
+
+    <div class="summary">
+      <div class="summary-box">
+        <h4>Total Income</h4>
+        <p id="total-income">Nu. 0</p>
+      </div>
+      <div class="summary-box">
+        <h4>Total Expenses</h4>
+        <p id="total-expenses">Nu. 0</p>
+      </div>
+      <div class="summary-box">
+        <h4>Balance</h4>
+        <p id="balance">Nu. 0</p>
+      </div>
+    </div>
+
+    <div class="chart-container">
+      <canvas id="expenseChart"></canvas>
+    </div>
+
+    <div class="btn-group">
+      <a href="income.html">Add Income</a>
+      <a href="expense.html">Add Expense</a>
+      <a href="balance.html">View Balance</a>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-container">
+          <div class="location">
+            📍 <strong>Location:</strong> <a href="https://mapcarta.com/34489982" target="_blank">CST College, Bhutan</a>
+        </div>
+        <div class="contact">
+            📧 <strong>Email:</strong> <a href="mailto:example@mail.com">example@mail.com</a>
+            📞 <strong>Phone:</strong> +91 1234567890
+        </div>
+        <div class="follow-us">
+            <p>Follow Us:</p>
+            <a href="https://www.facebook.com/ExpenseTracker" target="_blank">📘 Facebook</a>
+            <a href="https://twitter.com/ExpenseTracker" target="_blank">🐦 Twitter</a>
+            <a href="https://www.instagram.com/ExpenseTracker" target="_blank">📷 Instagram</a>
+            <a href="https://www.linkedin.com/company/ExpenseTracker" target="_blank">💼 LinkedIn</a>
+        </div>
+        <p>© 2025 Expense Tracker | All Rights Reserved</p>
+    </div>
+</footer>
+
+  <script>
+    // Function to load and display financial data
+    function updateFinancialData() {
+      // Load income & expense from localStorage
+      let incomeData = JSON.parse(localStorage.getItem("incomeData")) || [];
+      let expenseData = JSON.parse(localStorage.getItem("expenseData")) || [];
+
+      const totalIncome = incomeData.reduce((acc, item) => acc + Number(item.amount), 0);
+      const totalExpense = expenseData.reduce((acc, item) => acc + Number(item.amount), 0);
+      const balance = totalIncome - totalExpense;
+
+      document.getElementById("total-income").textContent = "Nu. " + totalIncome.toFixed(2);
+      document.getElementById("total-expenses").textContent = "Nu. " + totalExpense.toFixed(2);
+      document.getElementById("balance").textContent = "Nu. " + balance.toFixed(2);
+
+      // Update or create chart
+      const ctx = document.getElementById('expenseChart').getContext('2d');
+      
+      // Destroy previous chart instance if it exists
+      if (window.expenseChart) {
+        window.expenseChart.destroy();
+      }
+      
+      window.expenseChart = new Chart(ctx, {
+        type: 'pie',
+        data: {
+          labels: ['Income', 'Expenses'],
+          datasets: [{
+            label: 'Finance',
+            data: [totalIncome, totalExpense],
+            backgroundColor: ['#66cc99', '#ff6666'],
+            borderWidth: 1
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              position: 'bottom'
+            },
+            tooltip: {
+              callbacks: {
+                label: function(context) {
+                  return context.label + ': Nu. ' + context.raw.toFixed(2);
+                }
+              }
+            }
+          }
+        }
+      });
+    }
+
+    // Update data when page loads
+    document.addEventListener('DOMContentLoaded', updateFinancialData);
+    
+    // Also update when window gains focus (in case data was changed in another tab)
+    window.addEventListener('focus', updateFinancialData);
+  </script>
+
+</body>
+</html>

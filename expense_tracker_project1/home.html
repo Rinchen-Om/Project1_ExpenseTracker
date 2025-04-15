@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+  <title>Expense Tracker</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #ffe6e6;
+    }
+
+    header {
+      background-color: #2f5bba;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 30px;
+      height: 80px;
+    }
+
+    img {
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      max-width: 80%;
+      max-height: 80%;
+    }
+
+    .page-title {
+      font-size: 24px;
+      font-weight: bold;
+      margin-right: 45%;
+      color: #fff;
+    }
+
+    nav a {
+      margin-left: 20px;
+      text-decoration: none;
+      color: rgb(255, 255, 255);
+      font-weight: bold;
+      font-size: 16px;
+    }
+
+    .slider {
+      position: relative;
+      width: 80%;
+      height: 500px;
+      margin: 30px auto;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+
+    .slide {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-position: center;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .slide.active {
+      opacity: 1;
+    }
+
+    .slide-text {
+      background-color: rgba(0, 0, 0, 0.6);
+      color: #fff;
+      padding: 15px 25px;
+      border-radius: 8px;
+      font-size: 20px;
+      font-weight: bold;
+      text-align: center;
+      max-width: 90%;
+    }
+
+    section {
+      padding: 40px;
+      text-align: center;
+    }
+
+    .about, .recent-expense, .rating-feedback {
+      background-color: #fff0f0;
+      padding: 30px;
+      border-radius: 10px;
+      margin-bottom: 40px;
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    h3, h4 {
+      margin-bottom: 15px;
+      color: #333;
+    }
+
+    .recent-expense canvas {
+      max-width: 200px;
+      margin: 20px auto;
+    }
+
+    .stars {
+      font-size: 24px;
+      cursor: pointer;
+    }
+
+    .star {
+      color: gray;
+      transition: color 0.3s;
+    }
+
+    .star.selected, .star:hover {
+      color: gold;
+    }
+
+    .rating-feedback {
+      flex: 1;
+      text-align: left;
+    }
+    .learn-more {
+  margin-top: 10px;
+  padding: 10px 20px;
+  background-color: #ff8080;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+}
+
+
+footer {
+        background-color: #7f27c2;
+        color: rgb(0, 0, 0);
+        text-align: center;
+        padding: 20px;
+        position: relative;
+        bottom: 0;
+        width: 100%;
+    }
+    .footer-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+    .contact a, .follow-us a {
+        color: rgb(250, 5, 38);
+        text-decoration: none;
+        margin: 5px;
+    }
+    .contact a:hover, .follow-us a:hover {
+        color: #ff6666;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <img src="New folder/logo.png" alt="Expense Tracker Logo">
+    <div class="page-title">Expense Tracker</div>
+    <nav>
+      <a href="home.html">Home</a>
+      <a href="dashboard.html">Dashboard</a>
+      <a href="income.html">Income</a>
+      <a href="expense.html">Expense</a>
+      <a href="balance.html">Balance</a>
+    </nav>
+  </header>
+
+  <!-- New Sliding Image Section -->
+  <div class="slider">
+    <div class="slide active" style="background-image: url('New folder/finance1.jpeg');">
+      <div class="slide-text"><strong>Welcome to **Expense Tracker**! 🌟  
+        Track your income, monitor expenses, and plan for a better financial future—all in one simple, intuitive platform. 🚀  
+        Let’s get started!  
+        </strong></div>
+    </div>
+    <div class="slide" style="background-image: url('New folder/finance2.jpeg');">
+      <div class="slide-text"><strong>Welcome to **Expense Tracker**! 🌟  
+        Track your income, monitor expenses, and plan for a better financial future—all in one simple, intuitive platform. 🚀  
+        Let’s get started!  
+        </strong></div>
+    </div>
+    <div class="slide" style="background-image: url('New folder/finance3.jpeg');">
+      <div class="slide-text"><Strong>Welcome to **Expense Tracker**! 🌟  
+        Track your income, monitor expenses, and plan for a better financial future—all in one simple, intuitive platform. 🚀  
+        Let’s get started!  
+        </Strong></div>
+    </div>
+  </div>
+
+  <section class="about">
+    <h3>About the WebPage</h3>
+    <p>
+      Expense Tracker is a simple and efficient tool designed to help you manage your personal finances with ease.
+      It allows you to record your income and expenses, set budgets, and monitor your savings.
+      With a user-friendly interface, you can track your spending habits, identify areas to save, and make informed financial decisions.
+      Stay in control of your money and achieve your financial goals effortlessly!
+    </p>
+    <div style="text-align: center; margin-top: 10px;">
+      <a href="about.html">
+        <button style="padding: 10px 20px; font-size: 16px; background-color: #007bff; color: white; border: none; cursor: pointer; border-radius: 5px;">
+          Learn More
+        </button>
+      </a>
+    </div>
+  </section>
+
+
+  <!-- Rating and Feedback -->
+  <div class="rating-feedback" style="display: flex; justify-content: space-between; align-items: center; padding: 20px; background-color: #f8f9fa; border-radius: 8px; box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);">
+    <div>
+      <h4>Rate Us</h4>
+      <div class="stars" style="font-size: 24px; color: gold;">
+        <span class="star" data-value="1" style="cursor: pointer;">★</span>
+        <span class="star" data-value="2" style="cursor: pointer;">★</span>
+        <span class="star" data-value="3" style="cursor: pointer;">★</span>
+        <span class="star" data-value="4" style="cursor: pointer;">★</span>
+        <span class="star" data-value="5" style="cursor: pointer;">★</span>
+      </div>
+      <a href="help.html">
+        <button class="learn-more">For Help</button>
+      </a>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-container">
+          <div class="location">
+            📍 **Location:** <a href="https://mapcarta.com/34489982" target="_blank">CST College, Bhutan</a>
+        </div>
+        <div class="contact">
+            📧 **Email:** <a href="mailto:example@mail.com">example@mail.com</a>
+            📞 **Phone:** +91 1234567890
+        </div>
+        <div class="follow-us">
+            <p>Follow Us:</p>
+            <a href="https://www.facebook.com/ExpenseTracker" target="_blank">📘 Facebook</a>
+            <a href="https://twitter.com/ExpenseTracker" target="_blank">🐦 Twitter</a>
+            <a href="https://www.instagram.com/ExpenseTracker" target="_blank">📷 Instagram</a>
+            <a href="https://www.linkedin.com/company/ExpenseTracker" target="_blank">💼 LinkedIn</a>
+        </div>
+        <p>© 2025 Expense Tracker | All Rights Reserved</p>
+    </div>
+</footer>
+
+  <script>
+    // Sliding Image Logic
+    let slides = document.querySelectorAll(".slide");
+    let currentSlide = 0;
+    setInterval(() => {
+      slides[currentSlide].classList.remove("active");
+      currentSlide = (currentSlide + 1) % slides.length;
+      slides[currentSlide].classList.add("active");
+    }, 4000);
+
+   
+    // Star Rating
+    document.querySelectorAll(".star").forEach(star => {
+      star.addEventListener("click", function () {
+        let value = this.getAttribute("data-value");
+        document.querySelectorAll(".star").forEach(s => {
+          s.classList.remove("selected");
+          if (s.getAttribute("data-value") <= value) {
+            s.classList.add("selected");
+          }
+        });
+      });
+    });
+
+   
+  </script>
+</body>
+</html>

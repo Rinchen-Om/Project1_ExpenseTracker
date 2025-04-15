@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expense Tracker - All Pages</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        /* Shared CSS Variables */
+        :root {
+            /* Light Theme Defaults */
+            --bg-color: #f0f8ff;
+            --text-color: #333;
+            --card-bg: #ffffff;
+            --header-bg: #2f5bba;
+            --primary-color: #004aad;
+            --primary-hover: #00358d;
+            --secondary-color: #00aaff;
+            --border-color: #ccc;
+            --modal-header-bg: #e6f2ff;
+            --input-bg: #ffffff;
+            --nav-text: white;
+            --green: #00c897;
+            --red: #ff4d4d;
+            --purple: #5b2be0;
+        }
+
+        .dark {
+            /* Dark Theme Overrides */
+            --bg-color: #121212;
+            --text-color: #f0f0f0;
+            --card-bg: #1e1e1e;
+            --header-bg: #1a1a2e;
+            --primary-color: #3a7bd5;
+            --primary-hover: #2a5db0;
+            --secondary-color: #00d2ff;
+            --border-color: #444;
+            --modal-header-bg: #1a1a2e;
+            --input-bg: #2d2d2d;
+            --nav-text: #f8f8f8;
+        }
+
+        /* Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            min-height: 100vh;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: var(--header-bg);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 30px;
+            height: 80px;
+        }
+
+        .page-title {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--nav-text);
+        }
+
+        nav a {
+            margin-left: 20px;
+            text-decoration: none;
+            color: var(--nav-text);
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        nav a:hover {
+            color: #ffcc00;
+        }
+
+        .mode-toggle {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            margin-left: 20px;
+            transition: background-color 0.3s ease;
+        }
+
+        .mode-toggle:hover {
+            background-color: var(--primary-hover);
+        }
+
+        /* Login Page Specific Styles */
+        .login-container {
+            display: flex;
+            background-color: var(--card-bg);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            border-radius: 15px;
+            overflow: hidden;
+            max-width: 900px;
+            width: 100%;
+        }
+
+        .left-side {
+            background-color: var(--modal-header-bg);
+            padding: 40px;
+            width: 50%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            position: relative;
+        }
+
+        .left-side h1 {
+            font-size: 32px;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .left-side h2 {
+            font-size: 24px;
+            color: var(--secondary-color);
+            margin-bottom: 30px;
+        }
+
+        .slider {
+            width: 80%;
+            height: 300px;
+            position: relative;
+        }
+
+        .slider img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            transform: scale(1);
+            transition: opacity 1s ease-in-out, transform 1s ease-in-out;
+        }
+
+        .slider img.active {
+            opacity: 1;
+            transform: scale(1.05);
+            z-index: 1;
+        }
+
+        .right-side {
+            padding: 40px;
+            width: 50%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .right-side h2 {
+            margin-bottom: 20px;
+            color: var(--primary-color);
+            text-align: center;
+        }
+
+        .right-side input[type="email"],
+        .right-side input[type="password"] {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            font-size: 16px;
+            background-color: var(--input-bg);
+            color: var(--text-color);
+        }
+
+        .right-side button {
+            width: 100%;
+            padding: 12px;
+            background-color: var(--primary-color);
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .right-side button:hover {
+            background-color: var(--primary-hover);
+        }
+
+        .right-side p {
+            margin-top: 15px;
+            font-size: 14px;
+            color: var(--text-color);
+            text-align: center;
+        }
+
+        /* Dashboard/Other Pages Styles */
+        .main {
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            flex: 1;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 1rem 0;
+            width: 90%;
+            max-width: 900px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .chart-container {
+            position: relative;
+            width: 100%;
+            height: 300px;
+        }
+
+        .positive { color: var(--green); }
+        .negative { color: var(--red); }
+        .neutral { color: var(--text-color); }
+
+        /* Modal Styles */
+        .modal-content {
+            border-radius: 15px;
+            background-color: var(--card-bg);
+            color: var(--text-color);
+        }
+
+        .modal-header {
+            background-color: var(--modal-header-bg);
+            color: var(--primary-color);
+            border-bottom: none;
+            padding: 1rem 1.5rem;
+        }
+
+        .modal-body {
+            padding: 1.5rem;
+        }
+
+        .form-control {
+            background-color: var(--input-bg);
+            color: var(--text-color);
+            border-color: var(--border-color);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .login-container {
+                flex-direction: column;
+                max-width: 90%;
+            }
+
+            .left-side,
+            .right-side {
+                width: 100%;
+                padding: 20px;
+                text-align: center;
+            }
+
+            .left-side {
+                align-items: center;
+            }
+
+            header {
+                flex-direction: column;
+                height: auto;
+                padding: 10px;
+            }
+            
+            nav {
+                margin-top: 10px;
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            nav a {
+                margin: 5px 10px;
+            }
+            
+            .page-title {
+                margin: 10px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Login Page Content -->
+    <div id="login-page" class="d-flex justify-content-center align-items-center" style="height: 100vh;">
+        <div class="login-container">
+            <div class="left-side">
+                <h1>Save Money</h1>
+                <h2>Be aware of little expenses. <br> A small leak will sink a great ship.</h2>
+                <div class="slider">
+                    <img src="New folder/image2.jpeg" class="active" alt="Slide 1">
+                    <img src="New folder/image3.jpeg" alt="Slide 2">
+                    <img src="New folder/image4.jpg" alt="Slide 3">
+                </div>
+            </div>
+
+            <div class="right-side">
+                <h2>Login to Continue</h2>
+                <form onsubmit="handleLogin(event)">
+                    <input type="email" placeholder="Email" required>
+                    <input type="password" placeholder="Password" required>
+                    <button type="submit">Login</button>
+                </form>
+                <p>Don't have an account? <a href="#" style="color:var(--primary-color);">Sign up</a></p>
+                <p>
+                    <a href="#" data-bs-toggle="modal" data-bs-target="#profileModal" style="color:var(--primary-color);">Edit Profile & Settings</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Other Pages Content (Hidden by default) -->
+    <div id="other-pages" style="display: none;">
+        <header>
+            <img src="New folder/logo.png" alt="Logo">
+            <div class="page-title">Expense Tracker</div>
+            <nav>
+                <a href="home.html">Home</a>
+                <a href="dashboard.html">Dashboard</a>
+                <a href="income.html">Income</a>
+                <a href="expense.html">Expense</a>
+                <a href="balance.html">Balance</a>
+                <button class="mode-toggle">Toggle Dark Mode</button>
+            </nav>
+        </header>
+
+        <div class="main">
+            <!-- Content will be loaded here dynamically -->
+            <div id="page-content"></div>
+        </div>
+    </div>
+
+    <!-- Profile Modal -->
+    <div class="modal fade" id="profileModal" tabindex="-1" aria-labelledby="profileModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="profileModalLabel">Edit Profile & Settings</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Name</label>
+                            <input type="text" class="form-control" id="name" placeholder="Enter your name">
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="email" placeholder="Enter your email">
+                        </div>
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Password</label>
+                            <input type="password" class="form-control" id="password" placeholder="Enter your password">
+                        </div>
+                        <div class="mb-3">
+                            <label for="currency" class="form-label">Preferred Currency</label>
+                            <select class="form-control" id="currency">
+                                <option>USD</option>
+                                <option>EUR</option>
+                                <option>GBP</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Theme</label>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="theme" id="lightTheme" value="light">
+                                <label class="form-check-label" for="lightTheme">
+                                    Light Mode
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="theme" id="darkTheme" value="dark">
+                                <label class="form-check-label" for="darkTheme">
+                                    Dark Mode
+                                </label>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" id="saveSettings">Save Changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Theme Management
+        function applyTheme(theme) {
+            document.body.classList.toggle('dark', theme === 'dark');
+            localStorage.setItem('theme', theme);
+            
+            // Update charts if they exist
+            if (typeof updateChartColors === 'function') {
+                updateChartColors();
+            }
+        }
+
+        function toggleTheme() {
+            const newTheme = document.body.classList.contains('dark') ? 'light' : 'dark';
+            applyTheme(newTheme);
+        }
+
+        // Login function
+        function handleLogin(event) {
+            event.preventDefault();
+            // In a real app, you would validate credentials here
+            // For this demo, we'll just redirect to home.html
+            window.location.href = "home.html";
+        }
+
+        // Initialize theme on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            // Load saved theme or default to light
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            applyTheme(savedTheme);
+            
+            // Set the correct radio button
+            document.getElementById(savedTheme + 'Theme').checked = true;
+            
+            // Slider Animation
+            let currentSlide = 0;
+            const slides = document.querySelectorAll(".slider img");
+            
+            setInterval(() => {
+                slides[currentSlide].classList.remove("active");
+                currentSlide = (currentSlide + 1) % slides.length;
+                slides[currentSlide].classList.add("active");
+            }, 3000);
+            
+            // Theme switcher in modal
+            document.querySelectorAll('input[name="theme"]').forEach(radio => {
+                radio.addEventListener('change', function() {
+                    applyTheme(this.value);
+                });
+            });
+            
+            // Save button in modal
+            document.getElementById('saveSettings').addEventListener('click', function() {
+                const theme = document.querySelector('input[name="theme"]:checked').value;
+                applyTheme(theme);
+                bootstrap.Modal.getInstance(document.getElementById('profileModal')).hide();
+            });
+            
+            // Toggle button event
+            const themeToggle = document.querySelector('.mode-toggle');
+            if (themeToggle) {
+                themeToggle.addEventListener('click', toggleTheme);
+            }
+        });
+
+        // Page Navigation (simplified for this example)
+        function loadPageContent(page) {
+            // In a real app, this would fetch and load the appropriate content
+            document.getElementById('page-content').innerHTML = `
+                <div class="card">
+                    <h2>${page} Page</h2>
+                    <p>This is a placeholder for the ${page} page content.</p>
+                    <p>Current theme: ${localStorage.getItem('theme') || 'light'}</p>
+                </div>
+            `;
+        }
+    </script>
+</body>
+</html>
